@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title *ngIf="merchantAccount">
+      Merchant QR Code
+    </ion-title>
+    <ion-title *ngIf="!merchantAccount">
+      Receive money
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="showCamera" (click)="closeCamera()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngClass]="{'transparent': !merchantAccount }">
+  
+  <div class="content-wrap" *ngIf="merchantAccount">
+    <ion-label>Please show the following QR Code to your customer or print it</ion-label>
+    <div class="container-qr-code" *ngIf="myAngularxQrCode">
+      <qrcode [qrdata]="myAngularxQrCode" [size]="256" [level]="'M'"></qrcode>
+      <ion-button color="primary" expand="block" class="btn-print">Print QR Code</ion-button>
+    </div>
+  </div>
+  
+  <!-- /.content-wrap -->
+  <div class="content-wrap" *ngIf="!merchantAccount">
+    <ion-label>Please scan the merchant QR Code to receive money </ion-label>
+    
+    
+    
+    <ion-icon *ngIf="showCamera" class="frame" name="qr-scanner"></ion-icon>
+    <div *ngIf="!showCamera">
+      
+      <ion-item *ngIf="textScanned" lines="none">
+        <ion-label>
+          <p>Texte du QR Code</p>
+          <h2><b>{{ textScanned }}</b></h2>
+        </ion-label>
+      </ion-item>
+      <ion-button color="success btn-send" expand="block" (click)="scanCodeTest()">Scan to receive money</ion-button>
+    </div>
+    
+  </div>
+  <!-- /.content-wrap -->
+</ion-content>

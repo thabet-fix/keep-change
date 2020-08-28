@@ -1,0 +1,54 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+ion-label{
+    font-size: 13px;
+}
+.content-wrap {
+    padding: 10px; 
+}
+.label-xs{
+    color: #000;
+    font-size: 11px;
+}
+.input-champ{
+    --background: #2e82ff5e;
+    --padding-start: 7px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.bloc-left50{
+    float: left;
+    width: 50%;
+    margin: 15px 0;
+}
+.clear{
+    clear: both;
+}
+.bloc-left50 ion-thumbnail, .bloc-left50 ion-avatar{
+    margin-top: 15px;
+}

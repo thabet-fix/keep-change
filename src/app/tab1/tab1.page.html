@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Send money to client
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="content-wrap">
+    <ion-label class="label-amount">Enter amount</ion-label>
+    <ion-input type="text" class="input-champ amount"></ion-input>
+    <ion-button color="success btn-send" expand="block" (click)="presentLoading()">Send money</ion-button>
+  </div>
+  <!-- /.content-wrap -->
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content-wrap">
+    <ion-segment (ionChange)="segmentChanged($event)"  value="merchant" [(ngModel)]="type">
+      <ion-segment-button value="merchant">
+        <ion-label>Merchant</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="client">
+        <ion-label>Client</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-label>Company name <span style="color: red;">*</span></ion-label>
+    <ion-input type="text" class="input-champ" [(ngModel)]="username"></ion-input>
+    <ion-label>Password <span style="color: red;">*</span></ion-label>
+    <ion-input  expand="block" type="password" class="input-champ" [(ngModel)]="password"></ion-input>
+    <br>
+    <ion-button color="success btn-send" expand="block" (click)="register()">Login</ion-button>
+  </div>
+  
+</ion-content>

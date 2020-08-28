@@ -1,0 +1,38 @@
+
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
+    <ion-title>
+      List of your clients
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content-wrap">
+    <ion-label class="label-xs">
+      <!-- Votre solde est répartie de la façon suivante : -->
+      Your balance is distributed as follows :
+    </ion-label>
+  </div>
+  <!-- /.content-wrap -->
+  
+  
+  <ion-list>
+    <ion-item *ngFor="let client of clients" detail routerLink="/client-detail">
+      
+      <ion-avatar item-start>
+        <img src="../../assets/{{client.name}}-avatar.png"> 
+      </ion-avatar>
+      <ion-label>
+        <div class="flex_box">
+          <h3>{{ client.name }}</h3> 
+          <ion-note slot="end" class="montant-client">{{ client.solde }} {{ devise }}</ion-note>
+        </div>
+        
+      </ion-label>
+      
+    </ion-item>
+  </ion-list>
+    
+  
+</ion-content>
