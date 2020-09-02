@@ -1,87 +1,64 @@
-import { AngularFireAuth } from "angularfire2/auth";
-import { Component, OnInit } from "@angular/core";
-import {
-  LoadingController,
-  NavController,
-  MenuController,
-  AlertController,
-} from "@ionic/angular";
+import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
-import { Storage } from "@ionic/storage";
-// import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
+import { MerchantService } from '../service/merchant.service';
+import { Merchant } from '../service/merchant.model';
+import { Client } from '../service/client.model';
+import { ClientService } from '../service/client.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.page.html",
-  styleUrls: ["./login.page.scss"],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  user = "client";
-  password = "";
-  email = "";
-  constructor(
-    public storage: Storage,
-    private loadingCtrl: LoadingController,
-    private navCtrl: NavController,
-    private afAuth: AngularFireAuth,
-    private menuCtrl: MenuController,
-    private alertController: AlertController
-  ) {}
-  ionViewWillEnter() {
-    this.menuCtrl.enable(false);
-  }
 
-  ngOnInit() {}
-  change() {
-    if (this.user == "client") {
-      this.user = "magasin";
-    } else {
-      this.user = "client";
-    }
-  }
-  async login() {
-    if (this.formValidation()) {
-      // show loader
-      let loader = await this.loadingCtrl.create({
-        message: "Please wait...",
-      });
-      loader.present();
-      try {
-        await this.afAuth.auth
-          .signInWithEmailAndPassword(this.email + "@gmail.com", this.password)
-          .then((data) => {
-            this.storage.set("usertype", this.user);
-            this.navCtrl.navigateRoot("tabs");
-          });
+  username : string = "";
+  password : string = "";
+  type : string = "";
+  public actualMerchant : Merchant = new Merchant('', 0, '', '', 0);
+  public actualClient : Client = new Client('', 0, '', '', 0);
+  public merchants: Merchant[];
+  idCollection: any;
 
-        this.presentAlert("verify of your username or password");
-      } catch (e) {
-        //test
-        this.presentAlert("vérifier votre email ou mot de pass");
+  constructor(public navCtrl: NavController,
+     public afAuth: AngularFireAuth,
+     public merchantService: MerchantService,
+     public clientService: ClientService
+     ) { }
+
+  ngOnInit() {
+    this.merchantService.getMerchants().subscribe(
+      data => {
+        this.merchants = data;
+        console.log (this.merchants); /*TODO*/
       }
-      loader.dismiss();
-    }
-  }
-  formValidation() {
-    if (!this.email) {
-      this.presentAlert("Enter user name");
-      return false;
-    }
-    if (!this.password) {
-      this.presentAlert("Enter Password");
-      return false;
-    }
-    return true;
+    );
   }
 
-  async presentAlert(x: string) {
-    const alert = await this.alertController.create({
-      cssClass: "my-custom-class",
-      header: "Alert",
-      message: x,
-      buttons: ["OK"],
-    });
-
-    await alert.present();
+  async login() {
+    const {username , password } = this;
+    try{
+      const res = await this.afAuth.auth.signInWithEmailAndPassword(username+'@gmail.com', password);
+      console.log(this.afAuth.auth.currentUser.uid);
+      // create user with this id
+      this.idCollection = this.afAuth.auth.currentUser.uid;
+      
+      
+      //this.merchantService.addMerchant(this.actualMerchant, this.idCollection);
+      this.navCtrl.navigateRoot(['/tabs']); // CONTINUE HERE GO GO GO
+    }
+    catch(err){
+      console.log(err);
+    }
+    
   }
+
+  
+  logout() {
+    //this.afAuth.signOut();
+  }
+
 }

@@ -1,46 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button
-    class="ion-padding"
-    color="primary"
-    expand="full"
-    (click)="change()"
-    >{{user}}</ion-button
-  >
-
-  <ion-item *ngIf="(user=='client')" class="ion-padding">
-    <ion-label position="floating">client pull</ion-label>
-    <ion-input type="email" required [(ngModel)]="email"></ion-input>
-  </ion-item>
-
-  <ion-item *ngIf="(user!='client')" class="ion-padding">
-    <ion-label position="floating">magasin user</ion-label>
-    <ion-input type="email" required [(ngModel)]="email"></ion-input>
-  </ion-item>
-
-  <ion-item class="ion-padding">
-    <ion-label position="floating">mot de passe</ion-label>
-    <ion-input type="password" [(ngModel)]="password" required></ion-input>
-  </ion-item>
-  <ion-button
-    class="ion-padding"
-    color="primary"
-    expand="full"
-    (click)="login()"
-    >login</ion-button
-  >
-
-  <ion-button
-    class="ion-padding"
-    color="light"
-    expand="full"
-    [routerLink]="['/register']"
-  >
-    Register
-  </ion-button>
+  <div class="content-wrap">
+    <ion-label>Company name <span style="color: red;">*</span></ion-label>
+    <ion-input type="text" class="input-champ" [(ngModel)]="username"></ion-input>
+    <ion-label>Password <span style="color: red;">*</span></ion-label>
+    <ion-input  expand="block" type="password" class="input-champ" [(ngModel)]="password"></ion-input>
+    <br>
+    <ion-button color="success btn-send" expand="block" (click)="login()">Login</ion-button>
+  </div>
+  
 </ion-content>
