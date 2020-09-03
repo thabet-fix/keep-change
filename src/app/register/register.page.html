@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="content-wrap">
-    <ion-segment (ionChange)="segmentChanged($event)"  value="merchant" [(ngModel)]="type">
+    <ion-segment class="select_type_client" (ionChange)="segmentChanged($event)" value="merchant" [(ngModel)]="type">
       <ion-segment-button value="merchant">
         <ion-label>Merchant</ion-label>
       </ion-segment-button>
@@ -14,12 +14,20 @@
         <ion-label>Client</ion-label>
       </ion-segment-button>
     </ion-segment>
-    <ion-label>Company name <span style="color: red;">*</span></ion-label>
-    <ion-input type="text" class="input-champ" [(ngModel)]="username"></ion-input>
-    <ion-label>Password <span style="color: red;">*</span></ion-label>
-    <ion-input  expand="block" type="password" class="input-champ" [(ngModel)]="password"></ion-input>
-    <br>
-    <ion-button color="success btn-send" expand="block" (click)="register()">Login</ion-button>
   </div>
-  
+  <ion-item class="ion-padding text-center">
+    <ion-label position="floating">{{type}} name</ion-label>
+    <ion-input type="email" [(ngModel)]="username" required></ion-input>
+  </ion-item>
+  <ion-item class="ion-padding text-center">
+    <ion-label position="floating">mot de passe</ion-label>
+    <ion-input type="password" [(ngModel)]="password" required></ion-input>
+  </ion-item>
+
+  <div class="content-wrap">
+
+    <ion-button color="success btn-send" expand="block" (click)="register()">Register</ion-button>
+    <ion-button color="tertiary btn-send" expand="block" [routerLink]="['/login']">Login</ion-button>
+  </div>
+
 </ion-content>

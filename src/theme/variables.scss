@@ -3,6 +3,10 @@
 
 /** Ionic CSS Variables **/
 :root {
+  .text-center{
+    text-align: center;
+  }
+  .select_type_client{height: 40px;}
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
