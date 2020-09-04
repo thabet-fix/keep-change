@@ -35,8 +35,11 @@ export class ClientService {
   getClients(): Observable<Client[]> {
     return this.clients;
   }
+  getUserType(id: any) {
 
+  }
   getClient(id: any): Observable<Client> {
+
     return this.clientsCol.doc<Client>(id).valueChanges().pipe(
       take(1),
       map(client => {

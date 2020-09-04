@@ -54,8 +54,13 @@ export class LoginPage implements OnInit {
         //console.log(this.afAuth.auth.currentUser.uid);
         // create user with this id
         this.idCollection = this.afAuth.auth.currentUser.uid;
-        console.log(this.idCollection);
-        console.log(this.clientService.getClient(this.idCollection));
+        console.log(this.idCollection + "jj");
+        try {
+          this.clientService.getClient(this.idCollection);
+        } catch (error) {
+          console.log("hi");
+        }
+
         //this.storage.set("user_type", "ok");
 
         //this.merchantService.addMerchant(this.actualMerchant, this.idCollection);
